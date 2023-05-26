@@ -8,6 +8,7 @@ use App\Models\Categoria;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
+
 class DatabaseSeeder extends Seeder
 {
     /**
