@@ -20,11 +20,9 @@ export default {
     },
 
     plugins: [forms, typography],
-
-};
-
-module.exports ={
+   
     corePlugins:{
         container: false,
     }
-}
+};
+

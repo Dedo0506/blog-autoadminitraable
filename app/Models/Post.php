@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Node\Expr\FuncCall;
+use App\Models\Image;
 
 class Post extends Model
 {
@@ -26,7 +27,7 @@ class Post extends Model
 
     //relacion 1:1 polimorfica
     public function image(){
-        return $this->morphOne(Image::class, 'imagable');
+        return $this->morphOne(Image::class, 'imageable');
     }
 
 }
