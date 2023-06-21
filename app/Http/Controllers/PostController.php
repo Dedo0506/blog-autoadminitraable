@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class PostController extends Controller
     //
     public function index(){
 
-        $posts = Post::where('status',2)->latest('id')->paginate(8);
+        $posts = Post::where('status',2)->latest('id')->paginate(6);
         return view('posts.index', compact('posts'));
     }
 
@@ -22,5 +23,14 @@ class PostController extends Controller
             ->take(4)
             ->get();
         return view('posts.show', compact('post', 'similares')); 
+    }
+
+    public function categoria(Categoria $categoria){
+        $posts = Post::where('categoria_id', $categoria->id)
+        ->where ('status', 2)
+        ->latest('id')
+        ->paginate(4);
+
+        return view('posts.categoria', compact('posts', 'categoria'));
     }
 }
