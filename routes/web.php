@@ -12,6 +12,8 @@ Route::get('post/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('categoria/{categoria}',[PostController::class, 'categoria'])->name('posts.categoria');
 
+Route::get('tag/{tag}',[PostController::class, 'tag'])->name('posts.tag');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
