@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -27,10 +28,20 @@ class PostController extends Controller
 
     public function categoria(Categoria $categoria){
         $posts = Post::where('categoria_id', $categoria->id)
-        ->where ('status', 2)
-        ->latest('id')
-        ->paginate(4);
+                    ->where ('status', 2)
+                    ->latest('id')
+                    ->paginate(4);
 
         return view('posts.categoria', compact('posts', 'categoria'));
+    }
+
+
+    public function tag(Tag $tag){
+        $posts = $tag->posts()->where('tag_id', $tag->id)
+                    ->where ('status', 2)
+                    ->latest('id')
+                    ->paginate(4);
+
+        return view('posts.tag', compact('posts', 'tag'));
     }
 }
