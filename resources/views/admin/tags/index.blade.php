@@ -3,6 +3,9 @@
 @section('title', 'Prueba Admin')
 
 @section('content_header')
+
+    <a class="btn btn-secondary float-right" href="{{route('admin.tags.create')}}">Crear etiqueta</a>
+
 	<h1>Listado de etiquetas</h1>
 @stop
 
@@ -16,12 +19,6 @@
 
 	{{-- esto es con boostrap --}}
 	<div class="card">
-		
-		<div class="card-header">
-
-			<a class="btn btn-secondary" href="{{route('admin.tags.create')}}">Crear etiqueta</a>
-
-		</div>
 		
 		<div class="card-body">
 		
