@@ -13,7 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+      $tags = Tag::all();
       return view('admin.tags.index', compact('tags'));
     }
 
@@ -22,7 +22,14 @@ class TagController extends Controller
      */
     public function create()
     {
-      return view('admin.tags.create');
+      $colors =[
+        'red' => 'color rojo',
+        'yellow' => 'color amarillo',
+        'green' => 'color verde',
+        'blue' => 'color azul',
+        'indigo' => 'color indigo'
+      ];
+      return view('admin.tags.create', compact('colors'));
     }
 
     /**
@@ -30,38 +37,61 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-      return redirect()->route('')->with('','');  
+      
+      $request->validate(([
+        'name'=>'required',
+        'slug'=>'required|unique:categorias',
+        'color'=>'required'
+      ]));
+
+      $tag = Tag::create($request->all());
+      return redirect()->route('admin.tags.edit', $tag)->with('info','La etiqueta se creo con exito');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $tag)
+    public function show(Tag $tag)
     {
-       return view('admin.tags.show', compact('tag'));
+      return view('admin.tags.show', compact('tag'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $tag)
+    public function edit(Tag $tag)
     {
-        return view('admin.tags.edit', compact('tag'));
+      $colors =[
+        'red' => 'color rojo',
+        'yellow' => 'color amarillo',
+        'green' => 'color verde',
+        'blue' => 'color azul',
+        'indigo' => 'color indigo'
+      ];
+        return view('admin.tags.edit', compact('tag', 'colors'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $tag)
+    public function update(Request $request, Tag $tag)
     {
-      return redirect()->route('')->with('','');  
+      $request->validate(([
+        'name'=>'required',
+        'slug'=>'required|unique:categorias',
+        'color'=>'required'
+      ]));
+      $tag->update($request->all());
+      return redirect()->route('admin.tags.edit', $tag)
+      ->with('info','La etiqueta se actualizo correctamente');  
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $tag)
+    public function destroy(Tag $tag)
     {
-       return redirect()->route('')->with('','');     
+      $tag->delete();
+      return redirect()->route('admin.tags.index')->with('info','La etiqueta se elimino correctamente');     
     }
 }

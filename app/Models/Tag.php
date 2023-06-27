@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Tag extends Model
 {
     use HasFactory;
+    
+    //habilita la asignacion masiva
+    protected $fillable = ['name','slug', 'color'];
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 
     //relacion de N:N 
     public function posts(){
