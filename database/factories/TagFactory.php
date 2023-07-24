@@ -17,12 +17,12 @@ class TagFactory extends Factory
     public function definition(): array
     {
         $name =$this->faker->unique->word(20);
-
+        $colors = ['yellow', 'green', 'orange', 'blue', 'purple', 'pink', 'red'];
         return [
             //
             'name'=>$name,
             'slug'=>Str::slug($name),
-            'color'=>$this->faker->randomElement(['red', 'yellow','green', 'orage','blue', 'purple', 'pink']),
+            'color'=>$this->faker->randomElement($colors),
         ];
     }
 }
