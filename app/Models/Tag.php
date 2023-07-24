@@ -12,6 +12,7 @@ class Tag extends Model
     //habilita la asignacion masiva
     protected $fillable = ['name','slug', 'color'];
 
+    //funcion para que no aparezca el id de la categoria, sino el nombre en la URL
     public function getRouteKeyName()
     {
         return "slug";

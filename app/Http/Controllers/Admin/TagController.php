@@ -78,7 +78,7 @@ class TagController extends Controller
     {
       $request->validate(([
         'name'=>'required',
-        'slug'=>'required|unique:categorias',
+        'slug'=>"required|unique:tags, slug,$tag->id",
         'color'=>'required'
       ]));
       $tag->update($request->all());

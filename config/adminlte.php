@@ -321,11 +321,13 @@ return [
             'text' => 'Categorías',
             'route'  => 'admin.categorias.index',
             'icon' => 'fab fa-fw fa-buffer',
+            'active'=> ['admin/categorias*'],
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'fas fa-stream',
+            'active'=> ['admin/tags*'],
         ],
         [
             'text'    => 'multilevel',
