@@ -3,6 +3,9 @@
 @section('title', 'Prueba Admin')
 
 @section('content_header')
+
+	<a class="btn btn-secondary bt-sm float-right" href="{{route('admin.posts.create')}}">Nuevo post</a>
+	
 	<h1>Listado de post</h1>
 @stop
 
