@@ -37,7 +37,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-      
+      $post = Post::class ($request->all);
       $request->validate(([
         'name'=>'required',
         'slug'=>'required|unique:categorias',

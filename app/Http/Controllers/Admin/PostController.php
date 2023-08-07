@@ -36,11 +36,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
-        $post = Post::created($request->all());
+        $post = Post::create($request->all());
+     
+        if ($request -> tags){
+
+            $post->tags()->attach($request->tags); // relacion con las etiquetas, los valores son los que se quieren que tomen
+                                            //en este caso se refiere a las etiquetas que se selecciono para el post 
+
+        }
 
         return redirect()->route('admin.posts.edit', $post);
-        //>with('info', 'El post se creo con éxito');;
     }
 
     /**
@@ -55,7 +60,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact ('posts'));
+        $categorias = Categoria::pluck('name', 'id');
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact ('post', 'categorias', 'tags'));
     }
 
     /**
