@@ -17,6 +17,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>descripcion</th>
                         <th colspan="2 "></th>
                     </tr>
 
@@ -28,6 +29,8 @@
                         <tr>
                             <td>{{$post->id}}</td>
                             <td>{{$post->name}}</td>
+                            <td>@livewire('show-more-component', ['post' => $post])
+                            </td>
 
                             <td width = "10px">
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.posts.edit', $post)}}">Editar</a>
