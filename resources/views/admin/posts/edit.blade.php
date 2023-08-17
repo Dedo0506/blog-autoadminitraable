@@ -6,11 +6,16 @@
 	<h1>Editando un post</h1>
 @stop
 
-
 @section('content')
+	@if (session('info'))
+		<div class="alert alert-success">
+			<strong>{{session('info')}}</strong>
+		</div>
+	@endif
+
 <div class="card">
 	<div class="card-body">
-		{!! Form::open(['route' => 'admin.posts.store','autocomplete' => 'off']) !!}
+		{!! Form::model($post,['route' => ['admin.posts.update', $post], 'method'=> 'put', 'autocomplete' => 'off']) !!}
 		
 			{!! Form::hidden('user_id', auth()->user()->id) !!}
 
@@ -75,7 +80,7 @@
 			
 			<div class="form-group">
 				{!! Form::label('extract', 'Extracto:') !!}
-				{!! Form::textarea('extract', null, ['class' => 'form-control']) !!}
+				{!! Form::textarea(strip_tags('extract'), null, ['class' => 'form-control']) !!}
 				
 				@error('extract')
 					<small class="text-danger">{{ $message }}</small>
@@ -84,14 +89,14 @@
 			
 			<div class="form-group">
 				{!! Form::label('body', 'Cuerpo del post:') !!}
-				{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+				{!! Form::textarea(strip_tags('body'), null, ['class' => 'form-control']) !!}
 				
 				@error('body')
 					<small class="text-danger">{{ $message }}</small>
 				@enderror
 			</div>
 
-			{!! Form::submit('Crear post', ['class'=>'btn btn-primary']) !!}
+			{!! Form::submit('Actualizar post', ['class'=>'btn btn-primary']) !!}
 
 		{!! Form::close() !!}
 	</div>

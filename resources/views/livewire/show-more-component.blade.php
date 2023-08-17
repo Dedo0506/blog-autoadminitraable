@@ -4,9 +4,11 @@
             //numero de palabras que se mostrar de la observacion
             $total_palabras = 5;
             $caracteres = 'ÁÉÍÓÚáéíóúüÜñÑ0123456789.,;:/\%$-_[]¿?!¡()+-=*&@';
+            //eliminando html
+            $contenido = strip_tags($post->body);
 
             //primeras palabras de la observacion que se mostraran
-            $primeras_palabras = implode(' ', array_slice(str_word_count($post->body,1,$caracteres), 0, $total_palabras));
+            $primeras_palabras = implode(' ', array_slice(str_word_count($contenido,1,$caracteres), 0, $total_palabras));
 
         @endphp
         
@@ -21,7 +23,7 @@
 
                     @if ($post->id === $postToShowMore)
 
-                        {{$ultimos_caracteres = implode(' ', array_slice(str_word_count($post->body,1,$caracteres),$total_palabras))}}
+                        {{$ultimos_caracteres = implode(' ', array_slice(str_word_count($contenido,1,$caracteres),$total_palabras))}}
                     @endif
 
                         @if ($post->id !== $postToShowMore)

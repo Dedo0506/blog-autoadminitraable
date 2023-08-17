@@ -16,7 +16,6 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
         $posts = Post::all();
         return view('admin.posts.index', compact ('posts'));
     }
@@ -45,7 +44,8 @@ class PostController extends Controller
 
         }
 
-        return redirect()->route('admin.posts.edit', $post);
+        return redirect()->route('admin.posts.edit', $post)
+            ->with('info', 'Post guardado con éxito');;
     }
 
     /**
@@ -70,7 +70,10 @@ class PostController extends Controller
      */
     public function update(StorePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
+		
+		return redirect()->route('admin.posts.edit', $post)
+			->with('info', 'El post se actualizó con éxito');
     }
 
     /**
@@ -79,5 +82,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        $post->delete();
+        return redirect()->route('admin.posts.index')
+        ->with('info', 'El post se eliminó con éxito');
     }
 }
