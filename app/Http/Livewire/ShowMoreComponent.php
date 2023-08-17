@@ -17,11 +17,16 @@ class ShowMoreComponent extends Component
 
     public function toggleDescription($postId)
     {
+        
         if ($this->postToShowMore === $postId) {
             $this->postToShowMore = null;
+            
         } else {
+          
             $this->postToShowMore = $postId;
+            
         }
     }
 
 }
+
