@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ShowMoreComponent extends Component
 {
-    public $posts;
+    public $post;
 
     public $postToShowMore = null;
 
