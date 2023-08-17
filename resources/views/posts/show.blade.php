@@ -16,7 +16,38 @@
                 </figure>
                 
                 <div class="text-base text-gray-500 mt-4">
-                {{$post->body}}
+                    @livewire('show-more-component', ['post' => $post])
+
+                {{-- {{$post->body}} 
+                <div>
+                    @php
+                        $primeras_palabras = implode(' ', array_slice(str_word_count($post->body, 1), 0, 20));
+                    @endphp
+                
+                    <p class="leading-7">{{ $primeras_palabras }} <span id="resto" class="hidden">{{ substr($post->body, strlen($primeras_palabras)) }}</span>
+                
+                    <button id="mostrar-mas" class="text-blue-500 hover:underline">...Mostrar más</button>
+                    <button id="ocultar" class="text-blue-500 hover:underline hidden">Ocultar</button>
+                </div></p>
+                
+                <script>
+                    const botonMostrarMas = document.getElementById('mostrar-mas');
+                    const botonOcultar = document.getElementById('ocultar');
+                    const contenidoResto = document.getElementById('resto');
+                
+                    botonMostrarMas.addEventListener('click', function() {
+                        contenidoResto.classList.remove('hidden');
+                        botonMostrarMas.classList.add('hidden');
+                        botonOcultar.classList.remove('hidden');
+                    });
+                
+                    botonOcultar.addEventListener('click', function() {
+                        contenidoResto.classList.add('hidden');
+                        botonOcultar.classList.add('hidden');
+                        botonMostrarMas.classList.remove('hidden');
+                    });
+                </script>--}}
+
                 </div>
             </div>
             {{-- Contenido asociado --}}
