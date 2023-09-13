@@ -15,7 +15,11 @@ Route::get('categoria/{categoria}',[PostController::class, 'categoria'])->name('
 
 Route::get('tag/{tag}',[PostController::class, 'tag'])->name('posts.tag');
 
-Route::middleware([
+Route::get('/chart', function () {
+    return view('welcome');
+});
+
+/* Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
@@ -23,4 +27,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
+}); */
